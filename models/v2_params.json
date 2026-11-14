@@ -1,0 +1,8 @@
+{
+  "elo_k": 6,
+  "elo_carry": 0.75,
+  "half_life": 6.0,
+  "C": 0.01,
+  "blend_w": 1.0,
+  "shrink": 0.75
+}

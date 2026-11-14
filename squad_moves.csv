@@ -1,0 +1,11 @@
+trade_id,date,player,from_team,to_team,action,status,source,note,xi
+T1,2026-06,Rishabh Pant,Lucknow Super Giants,Delhi Capitals,move,confirmed,BCCI/IPL confirmed (Business Standard; India TV),Swap for Kuldeep Yadav,
+T1,2026-06,Kuldeep Yadav,Delhi Capitals,Lucknow Super Giants,move,confirmed,BCCI/IPL confirmed (Business Standard; India TV),Swap for Rishabh Pant,
+T2,2026-10,T Natarajan,Delhi Capitals,Sunrisers Hyderabad,move,confirmed,Khel Now; India TV (date approximate),Swap for Zeeshan Ansari,
+T2,2026-10,Zeeshan Ansari,Sunrisers Hyderabad,Delhi Capitals,move,confirmed,Khel Now; India TV (date approximate),Swap for T Natarajan,
+T3,2026-11-05,Liam Livingstone,Sunrisers Hyderabad,Chennai Super Kings,move,confirmed,BCCI confirmed (Business Standard),Four-player trade; INR 6 crore,
+T3,2026-11-05,Jack Edwards,Sunrisers Hyderabad,Chennai Super Kings,move,confirmed,BCCI confirmed (Business Standard),Four-player trade; INR 3 crore,
+T3,2026-11-05,Khaleel Ahmed,Chennai Super Kings,Sunrisers Hyderabad,move,confirmed,BCCI confirmed (Business Standard),Four-player trade; INR 4.8 crore,
+T3,2026-11-05,Nathan Ellis,Chennai Super Kings,Sunrisers Hyderabad,move,confirmed,BCCI confirmed (Business Standard),Four-player trade; INR 2 crore,
+T4,2026-11-07,Hardik Pandya,Mumbai Indians,Punjab Kings,move,confirmed,iplt20.com announcement,Swap for Arshdeep Singh; INR 18 crore,
+T4,2026-11-07,Arshdeep Singh,Punjab Kings,Mumbai Indians,move,confirmed,iplt20.com announcement,Swap for Hardik Pandya; INR 18 crore,

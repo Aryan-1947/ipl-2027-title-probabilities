@@ -1,0 +1,14 @@
+data/*
+!data/features.csv
+!data/player_matches.csv
+!data/team_ratings_latest.csv
+!data/player_ratings_latest.csv
+!data/squads_baseline_2026.csv
+!data/coaches.csv
+!data/schedule_status.json
+models/*
+!models/v2_params.json
+__pycache__/
+*.pyc
+.env
+.ipynb_checkpoints/
