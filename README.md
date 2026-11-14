@@ -4,7 +4,7 @@ An honest, walk-forward-tested IPL model with a season simulator and a live Stre
 
 ![App screenshot](assets/screenshot.png)
 
-**Live app:** https://YOUR-APP-NAME.streamlit.app
+**Live app:** https://ipl-2027-title-probabilities-analyzed.streamlit.app/
 
 > **Headline finding:** I tested several model families (Elo, logistic regression, XGBoost, a player-impact model, and skill ratings built from every men's T20 match on Cricsheet) with strict walk-forward validation. **None beat a coin flip on unseen seasons.** IPL matches look close to unpredictable from public pre-match information, so the app reports **title probabilities with uncertainty ranges**, not a single pick.
 
