@@ -5,7 +5,7 @@ Step 5 - Make the three README charts from the results of steps 3 and 4.
     charts/model_vs_coinflip.png   did any model beat a coin flip? (the honest chart)
     charts/team_strength_2027.png  batting vs wicket-taking strength of each squad
 
-Usage:  python 05_charts.py
+Usage:  python src/05_charts.py
 """
 from pathlib import Path
 

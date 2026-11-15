@@ -22,9 +22,9 @@ m6 = importlib.import_module("06_player_model")
 m7 = importlib.import_module("07_season_sim_v2")
 
 DATA, RES, MOD = Path("data"), Path("results"), Path("models")
-SQUADS = Path("squads_2027.csv")
+SQUADS = Path("live/squads_2027.csv")
 BASELINE = DATA / "squads_baseline_2026.csv"
-FIXTURES = Path("fixtures_2027.csv")
+FIXTURES = Path("live/fixtures_2027.csv")
 HOME_LOGIT = 0.15          # ~53.7% for an evenly matched home side (historical average; not confirmed in 2022-26)
 PRECISION = {"Fast": (8, 400), "Standard": (20, 600), "Full": (30, 1000)}   # (model re-fits, seasons per re-fit)
 

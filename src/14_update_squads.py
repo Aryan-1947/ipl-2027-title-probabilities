@@ -21,7 +21,7 @@ Unknown players (e.g. new overseas signings) are rated as average and start on t
 in the ledger.
 
 Outputs: squads_2027.csv, data/coaches.csv, data/snapshots/, results/squad_changes_log.csv
-Usage:   python 14_update_squads.py [--no-live] [--include-proposed] [--dry-run]
+Usage:   python src/14_update_squads.py [--no-live] [--include-proposed] [--dry-run]
 """
 import argparse
 import datetime
@@ -37,9 +37,9 @@ import numpy as np
 import pandas as pd
 
 DATA, RES = Path("data"), Path("results")
-SQUADS = Path("squads_2027.csv")
+SQUADS = Path("live/squads_2027.csv")
 BASELINE = DATA / "squads_baseline_2026.csv"
-MOVES, COACHES, ALIASES = Path("squad_moves.csv"), Path("coaches.csv"), Path("name_aliases.csv")
+MOVES, COACHES, ALIASES = Path("inputs/squad_moves.csv"), Path("inputs/coaches.csv"), Path("inputs/name_aliases.csv")
 TEAMS = ["Chennai Super Kings", "Delhi Capitals", "Gujarat Titans", "Kolkata Knight Riders",
          "Lucknow Super Giants", "Mumbai Indians", "Punjab Kings", "Rajasthan Royals",
          "Royal Challengers Bengaluru", "Sunrisers Hyderabad"]
@@ -581,7 +581,7 @@ def main():
 
     if out["unmatched"]:
         print(f"{len(out['unmatched'])} names not recognised - see data/squad_unmatched.csv")
-    print("Saved squads_2027.csv" if not a.dry_run else "(dry run - nothing written)")
+    print("Saved live/squads_2027.csv" if not a.dry_run else "(dry run - nothing written)")
 
 
 if __name__ == "__main__":

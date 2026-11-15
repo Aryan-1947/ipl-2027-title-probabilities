@@ -14,7 +14,7 @@ Tuned on 2016-2021 (half-life, weight of non-IPL games, regularisation), tested 
 Ablations show what the skill ratings add over Elo + home advantage alone.
 
 Outputs: results/model_comparison.csv (rows added), models/v3.pkl (used by steps 10 and 11)
-Usage:   python 09_t20_model.py        (several minutes: the whole T20 history is replayed 6 times)
+Usage:   python src/09_t20_model.py        (several minutes: the whole T20 history is replayed 6 times)
 """
 import datetime
 import importlib

@@ -7,18 +7,18 @@ How it fits together
   11_forward_test.py    freezes predictions BEFORE the season, then scores them against real results
 
 1. BEFORE the first ball (needs fixtures_2027.csv and the current squads):
-       python 11_forward_test.py predict
+       python src/11_forward_test.py predict
    Writes predictions_2027.csv (win probability for team_a in every fixture, home edge applied where the venue
    is the host's home ground) and predictions_2027_squads.csv (the exact squads used). COMMIT AND PUSH BOTH TO
    GITHUB before the season starts - the commit timestamp proves they were made in advance. An existing
    predictions file is never overwritten unless you pass --force.
 
 2. DURING / AFTER the season: refresh results (delete data/raw, re-run 01_data_cleaning.py), then
-       python 11_forward_test.py score
+       python src/11_forward_test.py score
    Prints accuracy, log loss and the gain over a coin flip with a bootstrap 95% interval.
    Use --year to rehearse on a past season (needs fixtures_<year>.csv).
 
-Usage:  python 11_forward_test.py predict|score [--year 2027] [--force]
+Usage:  python src/11_forward_test.py predict|score [--year 2027] [--force]
 """
 import argparse
 import datetime
@@ -39,7 +39,7 @@ def pair_key(date, a, b):
 
 
 def predict(year, force):
-    fix_path, pred_path = Path(f"fixtures_{year}.csv"), Path(f"predictions_{year}.csv")
+    fix_path, pred_path = Path(f"live/fixtures_{year}.csv"), Path(f"live/predictions_{year}.csv")
     if not fix_path.exists():
         raise SystemExit(f"{fix_path} not found. Run 15_fetch_schedule.py (or create fixtures_{year}_manual.csv) first.")
     if pred_path.exists() and not force:
@@ -58,13 +58,13 @@ def predict(year, force):
     out["created_utc"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
     out["squads_sha1"] = hashlib.sha1(Path(E.SQUADS).read_bytes()).hexdigest()[:12]
     out.to_csv(pred_path, index=False)
-    shutil.copy(E.SQUADS, f"predictions_{year}_squads.csv")
+    shutil.copy(E.SQUADS, f"live/predictions_{year}_squads.csv")
     print(f"Saved {len(out)} frozen predictions -> {pred_path} (squads fingerprint {out['squads_sha1'].iloc[0]})")
     print("Now commit and push predictions and squads files to GitHub BEFORE the season starts.")
 
 
 def score(year):
-    pred_path = Path(f"predictions_{year}.csv")
+    pred_path = Path(f"live/predictions_{year}.csv")
     if not pred_path.exists():
         raise SystemExit(f"{pred_path} not found - run 'predict' first.")
     pr = pd.read_csv(pred_path)

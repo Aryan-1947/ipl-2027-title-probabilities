@@ -11,7 +11,7 @@ Outputs
                                     (used in step 4 to rate the 2027 squads)
 
 Usage:
-    python 02_features.py
+    python src/02_features.py
 """
 from collections import defaultdict, deque
 from pathlib import Path

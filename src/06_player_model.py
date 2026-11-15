@@ -15,7 +15,7 @@ Outputs
     results/player_impact.csv      adjusted impact rating for every player
     models/v2_params.json          tuned settings used by 07_season_sim_v2.py
 
-Usage:  python 06_player_model.py
+Usage:  python src/06_player_model.py
 """
 import json
 from collections import defaultdict

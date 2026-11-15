@@ -6,7 +6,7 @@ Step 12 - Two quick diagnostics after the v3 result.
   B) The simplest possible model: "the home team is slightly favoured" and nothing else, tested with the
      same walk-forward protocol (train on earlier seasons, predict the next).
 
-Usage:  python 12_diagnostics.py
+Usage:  python src/12_diagnostics.py
 """
 import importlib
 from pathlib import Path

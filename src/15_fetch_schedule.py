@@ -10,7 +10,7 @@ Not released yet -> nothing is written and the app keeps using its generic fixtu
 A partial release (a few weeks of matches) is saved but NOT used for the forecast until every team has 14 games.
 
 Outputs: fixtures_2027.csv, data/schedule_status.json
-Usage:   python 15_fetch_schedule.py [--force] [--comp-id N]
+Usage:   python src/15_fetch_schedule.py [--force] [--comp-id N]
 """
 import argparse
 import datetime
@@ -22,7 +22,7 @@ from pathlib import Path
 import pandas as pd
 
 DATA = Path("data")
-FIXTURES, MANUAL = Path("fixtures_2027.csv"), Path("fixtures_2027_manual.csv")
+FIXTURES, MANUAL = Path("live/fixtures_2027.csv"), Path("inputs/fixtures_2027_manual.csv")
 STATUS, COMP_CACHE = DATA / "schedule_status.json", DATA / "ipl_comp_id.json"
 HOSTS = ["https://scores.iplt20.com/ipl/feeds/{}-matchschedule.js",
          "https://ipl-stats-sports-mechanic.s3.ap-south-1.amazonaws.com/ipl/feeds/{}-matchschedule.js"]

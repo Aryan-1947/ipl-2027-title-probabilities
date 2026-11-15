@@ -17,7 +17,7 @@ Outputs
     models/match_model.joblib      final models trained on ALL matches (used in step 4)
 
 Usage:
-    python 03_match_model.py
+    python src/03_match_model.py
 """
 from pathlib import Path
 

@@ -6,7 +6,7 @@ Cricsheet gives every player the same id in every competition, so a player's for
 can count towards his rating - including new auction signings who have little or no IPL history.
 
 Output: data/t20_player_matches.csv   one row per player per match
-Usage:  python 08_t20_data.py          (first run downloads several hundred MB and takes a few minutes;
+Usage:  python src/08_t20_data.py          (first run downloads several hundred MB and takes a few minutes;
                                         competitions that fail to download are skipped and reported)
 """
 import importlib

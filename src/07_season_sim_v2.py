@@ -12,7 +12,7 @@ A player with no IPL history (pkey not in that file) is treated as an average pl
 
 Outputs: results/title_probabilities.csv (replaces the v1 table), results/team_rating_v2.csv
 
-Usage:  python 07_season_sim_v2.py
+Usage:  python src/07_season_sim_v2.py
 """
 import importlib
 import json

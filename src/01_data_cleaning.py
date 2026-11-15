@@ -5,7 +5,7 @@ Step 1 - Download Cricsheet IPL ball-by-ball data and flatten it into two tidy C
     data/player_matches.csv   one row per player per match (batting + bowling line)
 
 Usage:
-    python 01_data_cleaning.py
+    python src/01_data_cleaning.py
 
 Data source: https://cricsheet.org/downloads/ (free, ball-by-ball, ODbL licence - credit them in your README).
 """

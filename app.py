@@ -10,7 +10,10 @@ Unofficial fan analytics project - not affiliated with the BCCI / IPL / any fran
 import datetime
 import importlib
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))  # scripts, engine and ui_art live in src/
 
 import pandas as pd
 import streamlit as st
@@ -129,7 +132,7 @@ def schedule_status():
 
 
 def load_coaches():
-    for p in (E.DATA / "coaches.csv", Path("coaches.csv")):
+    for p in (E.DATA / "coaches.csv", Path("inputs/coaches.csv")):
         if p.exists():
             df = pd.read_csv(p)
             df["role"] = df["role"].fillna("")
@@ -238,7 +241,7 @@ def team_cards(sq, coaches, ratings):
 H(CSS)
 for need in (E.MOD / "v2_params.json", E.DATA / "team_ratings_latest.csv", E.SQUADS):
     if not Path(need).exists():
-        st.error(f"Missing {need}. Run the pipeline first (steps 1-7, then `python 14_update_squads.py`).")
+        st.error(f"Missing {need}. Run the pipeline first (steps 1-7, then `python src/14_update_squads.py`).")
         st.stop()
 
 with st.sidebar:
@@ -316,7 +319,7 @@ with tab2:
         st.caption("Change in title probability: current squads vs the 2026 squads, same simulation settings. "
                    "Differences of about a point or less are within simulation noise.")
     else:
-        st.info("Run `python 14_update_squads.py` once to create the 2026 baseline for comparison.")
+        st.info("Run `python src/14_update_squads.py` once to create the 2026 baseline for comparison.")
     st.markdown("### Trade lab — try your own trade")
     c1, c2, c3 = st.columns([2, 3, 2])
     team_from = c1.selectbox("From", sorted(sq.team.unique()), key="tl_from")

@@ -13,7 +13,7 @@ squads_2027.csv
   expected XI; new players get bat_val / wk_val by hand - see the printed percentiles), then re-run.
   To rebuild it from scratch, delete the file.
 
-Usage:  python 04_season_sim.py
+Usage:  python src/04_season_sim.py
 """
 import importlib
 from pathlib import Path
@@ -25,7 +25,7 @@ from common import CORE, fit_lr, make_X, predict_lr
 
 f2 = importlib.import_module("02_features")  # reuse its constants so training and simulation stay consistent
 DATA, RES = Path("data"), Path("results")
-SQUADS = Path("squads_2027.csv")
+SQUADS = Path("live/squads_2027.csv")
 N_SIMS = 10_000
 SEED = 2027
 

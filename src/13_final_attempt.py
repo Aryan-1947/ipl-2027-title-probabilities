@@ -15,7 +15,7 @@ Test: walk-forward over EVERY season from 2012 (train only on earlier seasons, p
 Success rule: the gain in log loss over a coin flip must be positive even with a 98.75% bootstrap interval
 (95% corrected for testing 4 candidates). Anything else is reported as "no edge shown".
 
-Needs: models/v3.pkl (from 09_t20_model.py).   Usage: python 13_final_attempt.py
+Needs: models/v3.pkl (from 09_t20_model.py).   Usage: python src/13_final_attempt.py
 """
 import importlib
 from collections import defaultdict

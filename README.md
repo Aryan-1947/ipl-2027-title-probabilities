@@ -78,57 +78,53 @@ None passed. With about 1,000 matches only edges of roughly 5 points of win prob
 ## Project structure
 
 ```
-app.py                       Streamlit dashboard (entry point)
-engine.py                    forecast engine used by the app, the CLI and the forward test
-ui_art.py                    hand-drawn SVG art (banner, trophy, team badges)
-common.py                    shared feature definitions
-01_... to 15_...py           pipeline scripts (table below)
-squad_moves.csv              trade ledger you edit by hand
-coaches.csv, name_aliases.csv
-squads_2027.csv, fixtures_2027.csv   refreshed by steps 14 and 15
-data/  results/  models/  charts/    generated outputs (only small files are committed)
-assets/logos/                optional: official logos as CSK.png, MI.png ...
-.streamlit/config.toml       dark theme
+app.py                 Streamlit dashboard (entry point)
 requirements.txt
+src/                   pipeline scripts 01-15, engine.py (forecast engine), common.py, ui_art.py (SVG art)
+inputs/                files you edit by hand: squad_moves.csv, coaches.csv, name_aliases.csv
+live/                  refreshed by the scripts: squads_2027.csv, fixtures_2027.csv, frozen predictions
+data/  results/  models/  charts/    generated outputs (only small files are committed)
+assets/                screenshot (and optional official logos in assets/logos/)
+.streamlit/config.toml dark theme
 ```
 
 | Step | Script | What it does |
 |---|---|---|
-| 1 | `01_data_cleaning.py` | Downloads Cricsheet ball-by-ball data, builds match and player tables |
-| 2 | `02_features.py` | Leak-free pre-match features (Elo, form, head-to-head, venue, XI strength) |
-| 3 | `03_match_model.py` | First-generation models with walk-forward validation |
-| 4 | `04_season_sim.py` | First season simulator; creates the 2026 baseline squads |
-| 5 | `05_charts.py` | README charts |
-| 6 | `06_player_model.py` | Tuned Elo + player-impact ridge model, bootstrap significance test |
-| 7 | `07_season_sim_v2.py` | Season simulator with the v2 model and uncertainty ranges |
-| 8-10 | `08_t20_data.py`, `09_t20_model.py`, `10_season_sim_v3.py` | All-T20 skill ratings model (did not beat a coin flip) |
-| 11 | `11_forward_test.py` | Freezes predictions before the season, scores them as results arrive |
-| 12-13 | `12_diagnostics.py`, `13_final_attempt.py` | Sanity checks and the pre-declared final test |
-| 14 | `14_update_squads.py` | Squads, trades and coaches from the internet + ledger |
-| 15 | `15_fetch_schedule.py` | Checks for the official 2027 schedule and saves it |
-| - | `engine.py` | Shared forecast engine (app, CLI and forward test) |
+| 1 | `src/01_data_cleaning.py` | Downloads Cricsheet ball-by-ball data, builds match and player tables |
+| 2 | `src/02_features.py` | Leak-free pre-match features (Elo, form, head-to-head, venue, XI strength) |
+| 3 | `src/03_match_model.py` | First-generation models with walk-forward validation |
+| 4 | `src/04_season_sim.py` | First season simulator; creates the 2026 baseline squads |
+| 5 | `src/05_charts.py` | README charts |
+| 6 | `src/06_player_model.py` | Tuned Elo + player-impact ridge model, bootstrap significance test |
+| 7 | `src/07_season_sim_v2.py` | Season simulator with the v2 model and uncertainty ranges |
+| 8-10 | `src/08_t20_data.py`, `src/09_t20_model.py`, `src/10_season_sim_v3.py` | All-T20 skill ratings model (did not beat a coin flip) |
+| 11 | `src/11_forward_test.py` | Freezes predictions before the season, scores them as results arrive |
+| 12-13 | `src/12_diagnostics.py`, `src/13_final_attempt.py` | Sanity checks and the pre-declared final test |
+| 14 | `src/14_update_squads.py` | Squads, trades and coaches from the internet + ledger |
+| 15 | `src/15_fetch_schedule.py` | Checks for the official 2027 schedule and saves it |
+| - | `src/engine.py` | Shared forecast engine (app, CLI and forward test) |
 
 ## Run it locally
 
 ```
 pip install -r requirements.txt
-python 01_data_cleaning.py
-python 02_features.py
-python 03_match_model.py
-python 04_season_sim.py
-python 06_player_model.py
-python 07_season_sim_v2.py
-python 14_update_squads.py
-python 15_fetch_schedule.py
-python 05_charts.py
+python src/01_data_cleaning.py
+python src/02_features.py
+python src/03_match_model.py
+python src/04_season_sim.py
+python src/06_player_model.py
+python src/07_season_sim_v2.py
+python src/14_update_squads.py
+python src/15_fetch_schedule.py
+python src/05_charts.py
 python -m streamlit run app.py
 ```
 
 ## Keeping it current
 
-- **Trades / auction:** `python 14_update_squads.py` (or the app's sidebar button). Add `release` / `add` rows to `squad_moves.csv` if Wikipedia lags. Names it cannot match are listed in `data/squad_unmatched.csv` (fix in `name_aliases.csv`).
-- **Schedule:** `python 15_fetch_schedule.py`, or create `fixtures_2027_manual.csv` (`date,team_a,team_b,venue[,home,stage]`).
-- **Forward test (the only fully honest test):** once fixtures exist, run `python 11_forward_test.py predict` and commit `predictions_2027.csv` BEFORE the first ball; later `python 11_forward_test.py score` compares it with real results.
+- **Trades / auction:** `python src/14_update_squads.py` (or the app's sidebar button). Add `release` / `add` rows to `inputs/squad_moves.csv` if Wikipedia lags. Names it cannot match are listed in `data/squad_unmatched.csv` (fix in `inputs/name_aliases.csv`).
+- **Schedule:** `python src/15_fetch_schedule.py`, or create `inputs/fixtures_2027_manual.csv` (`date,team_a,team_b,venue[,home,stage]`).
+- **Forward test (the only fully honest test):** once fixtures exist, run `python src/11_forward_test.py predict` and commit `live/predictions_2027.csv` BEFORE the first ball; later `python src/11_forward_test.py score` compares it with real results.
 
 ## Limitations
 

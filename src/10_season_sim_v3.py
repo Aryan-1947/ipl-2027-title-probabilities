@@ -13,7 +13,7 @@ copy his player id (pkey) from data/t20_player_matches.csv (column player_id) - 
 results/player_impact.csv.
 
 Outputs: results/title_probabilities.csv, results/team_rating_v3.csv
-Usage:   python 10_season_sim_v3.py
+Usage:   python src/10_season_sim_v3.py
 """
 import datetime
 import importlib
